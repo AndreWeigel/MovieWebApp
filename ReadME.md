@@ -6,7 +6,6 @@ It features user-based movie management, clean routing, and a responsive HTML in
 
 ## 🚀 Features
 
-- User authentication (optional)
 - Add, view, and delete movies
 - Each user can manage their own movies
 - Safe delete operations (users can only delete their own entries)
@@ -54,19 +53,14 @@ movieweb/
 ├── templates/          # Jinja2 HTML templates
 ├── app.py              # Main Flask app
 ├── models.py           # SQLAlchemy models
+├── services.py         # Services for models
 ├── requirements.txt    # Dependencies
 └── README.md
 ```
 
-## 📸 Preview
-
-> “My Flask App” title links to the home page  
-> Simple and clean movie list with user-specific controls  
 
 ## 📝 License
 
 MIT License. Feel free to fork, modify, and build upon this project.
 
----
 
-Happy Coding! 🎉
