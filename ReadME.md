@@ -6,6 +6,7 @@ It features user-based movie management, clean routing, and a responsive HTML in
 
 ## 🚀 Features
 
+- User authentication (optional)
 - Add, view, and delete movies
 - Each user can manage their own movies
 - Safe delete operations (users can only delete their own entries)
@@ -17,6 +18,7 @@ It features user-based movie management, clean routing, and a responsive HTML in
 - **Backend**: Python, Flask, SQLAlchemy
 - **Frontend**: HTML5, CSS3 (with Jinja2 templating)
 - **Database**: SQLite (easy to switch to PostgreSQL or others)
+- **API**: OMDb API integration
 
 ## 🧰 Setup Instructions
 
@@ -37,7 +39,13 @@ It features user-based movie management, clean routing, and a responsive HTML in
    pip install -r requirements.txt
    ```
 
-4. **Run the app**:
+4. **Set up environment variables**:
+   Create a `.env` file in the project root and add your OMDb API key:
+   ```
+   OMDB_API_KEY=[YOUR_API_KEY]
+   ```
+
+5. **Run the app**:
    ```bash
    flask run
    ```
@@ -46,16 +54,22 @@ It features user-based movie management, clean routing, and a responsive HTML in
 
 ## 📁 File Structure
 
-```
-movieweb/
+```MovieWebApp/
 │
-├── static/             # CSS and static assets
-├── templates/          # Jinja2 HTML templates
-├── app.py              # Main Flask app
-├── models.py           # SQLAlchemy models
-├── services.py         # Services for models
-├── requirements.txt    # Dependencies
-└── README.md
+├── app/                     # Main application package
+│   ├── __init__.py          # App factory and configuration loading
+│   ├── models/              # SQLAlchemy models
+│   ├── routes/              # Flask blueprints (views/routes)
+│   ├── services/            # External API integrations (e.g., OMDb)
+│   ├── templates/           # Jinja2 templates (HTML)
+│   └── static/              # CSS, JS, images
+│
+├── instance/                # Local configuration (e.g. SQLite db)│
+├── .env                     # Environment variables (e.g., OMDB_API_KEY)
+├── .gitignore               # Ignore venv, .env, etc.
+├── README.md                # Project documentation
+├── requirements.txt         # Python dependencies
+└── run.py                   # Entry point for running the app
 ```
 
 
@@ -63,4 +77,6 @@ movieweb/
 
 MIT License. Feel free to fork, modify, and build upon this project.
 
+---
 
+Happy Coding! 🎉
