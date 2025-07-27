@@ -78,5 +78,3 @@ It features user-based movie management, clean routing, and a responsive HTML in
 MIT License. Feel free to fork, modify, and build upon this project.
 
 ---
-
-Happy Coding! 🎉
