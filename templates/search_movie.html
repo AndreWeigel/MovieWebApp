@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+
+{% block title %}Search Movies{% endblock %}
+
+{% block content %}
+    <h1>Search for a Movie to Add</h1>
+
+    <form method="post" action="{{ url_for('movie_routes.search_movie', user_id=user.id) }}">
+        <input type="text" name="query" placeholder="Search movie title" value="{{ query }}" required>
+        <button type="submit">Search</button>
+    </form>
+
+    {% if suggestions %}
+        <h2>Suggestions:</h2>
+        <ul>
+            {% for movie in suggestions %}
+                <li>
+                    <strong>{{ movie.Title }}</strong> ({{ movie.Year }})
+                    {% if movie.Poster and movie.Poster != "N/A" %}
+                        <img src="{{ movie.Poster }}" alt="Poster" width="100">
+                    {% endif %}
+
+                    <form method="post" action="{{ url_for('movie_routes.add_movie', user_id=user.id) }}" style="display:inline;">
+                        <input type="hidden" name="imdb_id" value="{{ movie.imdbID }}">
+                        <button type="submit">Add</button>
+                    </form>
+                </li>
+            {% endfor %}
+        </ul>
+    {% elif query %}
+        <p>No results found for "{{ query }}"</p>
+    {% endif %}
+{% endblock %}

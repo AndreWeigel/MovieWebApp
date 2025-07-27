@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+
+{% block title %}{{ user.name }}'s Movies{% endblock %}
+
+{% block content %}
+    <h1>{{ user.name }}'s Favorite Movies</h1>
+
+    <ul>
+        {% for movie in movies %}
+        <li style="margin-bottom: 1em;">
+            <strong>{{ movie.title }}</strong>
+            {% if movie.year %}
+                ({{ movie.year }})
+            {% endif %}
+
+            {% if movie.poster_url and movie.poster_url != "N/A" %}
+                <div>
+                    <img src="{{ movie.poster_url }}" alt="Poster for {{ movie.title }}" width="100">
+                </div>
+            {% endif %}
+
+            <form action="{{ url_for('movie_routes.delete_movie', user_id=user.id, movie_id=movie.id) }}" method="post" style="display:inline;">
+                <button type="submit">Delete</button>
+            </form>
+        </li>
+        {% else %}
+        <li>No movies found.</li>
+        {% endfor %}
+    </ul>
+
+    <h2>Add New Movie</h2>
+    <form action="{{ url_for('movie_routes.search_movie', user_id=user.id) }}" method="post">
+        <input type="text" name="query" placeholder="Search movie title" required>
+        <button type="submit">Search Movie to add</button>
+    </form>
+{% endblock %}

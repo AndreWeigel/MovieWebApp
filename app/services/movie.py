@@ -61,10 +61,13 @@ class MovieService:
             raise Exception(f"Error updating movie: {e}")
 
     @staticmethod
-    def delete_movie(movie_id):
+    def delete_movie( user_id, movie_id):
         movie = Movie.query.get(movie_id)
         if not movie:
-            return False
+            return False  # Movie doesn't exist
+        if movie.user_id != user_id:
+            return False  # Unauthorized deletion attempt
+
         try:
             db.session.delete(movie)
             db.session.commit()
@@ -133,6 +136,3 @@ if __name__ == '__main__':
     for i in res:
         print(i)
 
-    imdb_id = 'tt0365467'
-
-    res = movie_service.add_omdb_movie_to_db(imdb_id)
